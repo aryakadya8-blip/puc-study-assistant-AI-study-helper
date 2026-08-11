@@ -56,12 +56,45 @@ For theory:
 - Give important points.
 - Mention exam-important points.
 """
-with st.spinner("🤔 Thinking..."):
-    response = client.responses.create(
-        model="gpt-4.1-mini",
-        input=prompt
-    )
 
-st.subheader("📖 Answer")
-st.write(response.output[0].content[0].text)
-        
+    if st.button("🤖 Ask AI", use_container_width=True):
+
+    if not question or not question.strip():
+        st.warning("Please enter a question.")
+
+    else:
+        prompt = f"""
+You are a friendly PUC Study Assistant.
+
+Subject: {subject}
+Mode: {mode}
+
+Student question:
+{question}
+
+Give a clear answer suitable for a PUC student.
+
+For numerical problems:
+1. Give the formula.
+2. Explain the symbols.
+3. Substitute the values.
+4. Show the calculation.
+5. Give the final answer.
+
+For theory:
+- Explain simply.
+- Give important points.
+- Mention exam-important points.
+"""
+
+        with st.spinner("🤔 Thinking..."):
+            response = client.responses.create(
+                model="gpt-4.1-mini",
+                input=prompt
+            )
+
+        answer = response.output[0].content[0].text
+
+        st.subheader("📖 Answer")
+        st.write(answer)
+             
