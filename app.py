@@ -86,6 +86,20 @@ For theory:
 - Give important points.
 - Mention exam-important points.
 """
+if st.button("🤖 Ask AI", use_container_width=True):
+
+    if not question or not question.strip():
+        st.warning("Please enter a question.")
+    else:
+        prompt = f"""
+You are a friendly PUC Study Assistant.
+
+Subject: {subject}
+Mode: {mode}
+
+Student question:
+{question}
+"""
 
         with st.spinner("🤔 Thinking..."):
             response = client.responses.create(
@@ -93,9 +107,5 @@ For theory:
                 input=prompt
             )
 
-        answer = response.output[0].content[0].text
-
         st.subheader("📖 Answer")
-        st.write(answer)
-
-        
+        st.write(response.output[0].content[0].text)
