@@ -57,22 +57,4 @@ For theory:
 - Mention exam-important points.
 """
 
-        with st.spinner("🤔 Thinking..."):
-            response = client.responses.create(
-                model="gpt-5-mini",
-                input=prompt
-            )
-
-        st.subheader("📖 Answer")
-        st.write(response.output_text)
-import streamlit as st
-
-st.title("📚 PUC Study Assistant")
-
-subject = st.selectbox("Choose subject", ["Physics", "Chemistry", "Maths", "English"])
-
-question = st.text_input("Ask your question")
-
-if question:
-    st.write(f"Answer for {subject}:")
-    st.success("This is where your AI answer will come soon 🤖")
+        
