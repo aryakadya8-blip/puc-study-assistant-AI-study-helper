@@ -56,5 +56,12 @@ For theory:
 - Give important points.
 - Mention exam-important points.
 """
+with st.spinner("🤔 Thinking..."):
+    response = client.responses.create(
+        model="gpt-4.1-mini",
+        input=prompt
+    )
 
+st.subheader("📖 Answer")
+st.write(response.output[0].content[0].text)
         
